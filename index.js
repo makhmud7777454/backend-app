@@ -45,7 +45,7 @@ const User = mongoose.model('User', userSchema);
 // Multer setup for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../uploads'); // Specify your upload folder
+    cb(null, 'uploads/'); // Specify your upload folder
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '_' + file.originalname); // Generate a unique filename
@@ -53,7 +53,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage }); // This initializes the multer instance for handling file uploads
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Registration Route
 app.post('/register', async (req, res) => {
   try {
